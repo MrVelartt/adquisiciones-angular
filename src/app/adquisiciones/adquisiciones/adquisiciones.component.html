@@ -1,0 +1,38 @@
+<!-- src/app/adquisiciones/adquisiciones/adquisiciones.component.html -->
+
+<h2>Listado de Adquisiciones</h2>
+<button (click)="crear()">Nueva Adquisición</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Presupuesto</th>
+      <th>Unidad</th>
+      <th>Tipo</th>
+      <th>Cantidad</th>
+      <th>Valor Unitario</th>
+      <th>Valor Total</th>
+      <th>Fecha</th>
+      <th>Proveedor</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of adquisiciones">
+      <td>{{ a.id }}</td>
+      <td>{{ a.presupuesto | currency:'COP' }}</td>
+      <td>{{ a.unidad }}</td>
+      <td>{{ a.tipo_bien_servicio }}</td>        <!-- corregido -->
+      <td>{{ a.cantidad }}</td>
+      <td>{{ a.valor_unitario | currency:'COP' }}</td> <!-- corregido -->
+      <td>{{ a.valor_total | currency:'COP' }}</td>    <!-- corregido -->
+      <td>{{ a.fecha_adquisicion }}</td>          <!-- corregido -->
+      <td>{{ a.proveedor }}</td>
+      <td>
+        <button (click)="editar(a.id)">Editar</button>
+        <button (click)="desactivar(a.id)">Desactivar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+nav ul {
+    display: flex;
+    gap: 2rem; /* Espacio entre los ítems */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Opcional: centra el menú */
+  }
+  
+  nav li {
+    margin: 0;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    transition: background-color 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #50648A; /* Azul más claro */
+    border-radius: 5px;
+  }
+  

@@ -1,0 +1,60 @@
+<form [formGroup]="adquisicionForm" (ngSubmit)="onSubmit()">
+
+  <label>Presupuesto:</label>
+  <input type="number" formControlName="presupuesto" />
+  <div *ngIf="adquisicionForm.get('presupuesto')?.invalid && adquisicionForm.get('presupuesto')?.touched">
+    Presupuesto es requerido y debe ser ≥ 0
+  </div>
+
+  <label>Unidad:</label>
+  <input type="text" formControlName="unidad" />
+  <div *ngIf="adquisicionForm.get('unidad')?.invalid && adquisicionForm.get('unidad')?.touched">
+    Unidad es requerida
+  </div>
+
+  <label>Tipo Bien/Servicio:</label>
+  <input type="text" formControlName="tipo_bien_servicio" />
+  <div *ngIf="adquisicionForm.get('tipo_bien_servicio')?.invalid && adquisicionForm.get('tipo_bien_servicio')?.touched">
+    Tipo Bien/Servicio es requerido
+  </div>
+
+  <label>Cantidad:</label>
+  <input type="number" formControlName="cantidad" />
+  <div *ngIf="adquisicionForm.get('cantidad')?.invalid && adquisicionForm.get('cantidad')?.touched">
+    Cantidad debe ser ≥ 1
+  </div>
+
+  <label>Valor Unitario:</label>
+  <input type="number" formControlName="valor_unitario" />
+  <div *ngIf="adquisicionForm.get('valor_unitario')?.invalid && adquisicionForm.get('valor_unitario')?.touched">
+    Valor Unitario debe ser ≥ 0
+  </div>
+
+  <label>Valor Total:</label>
+  <input type="number" formControlName="valor_total" readonly />
+  <!-- readonly evita edición sin deshabilitar el control -->
+
+  <label>Fecha Adquisición:</label>
+  <input type="date" formControlName="fecha_adquisicion" />
+  <div *ngIf="adquisicionForm.get('fecha_adquisicion')?.invalid && adquisicionForm.get('fecha_adquisicion')?.touched">
+    Fecha es requerida
+  </div>
+
+  <label>Proveedor:</label>
+  <input type="text" formControlName="proveedor" />
+  <div *ngIf="adquisicionForm.get('proveedor')?.invalid && adquisicionForm.get('proveedor')?.touched">
+    Proveedor es requerido
+  </div>
+
+  <label>Documentación:</label>
+  <input type="text" formControlName="documentacion" />
+
+  <label>
+    <input type="checkbox" formControlName="activa" /> Activo
+  </label>
+
+  <button type="submit">
+    Guardar Adquisición
+  </button>
+
+</form>

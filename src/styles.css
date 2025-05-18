@@ -1,1 +1,175 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+/* 1. Variables de color */
+:root {
+  --color-azul-oscuro: #1C2D59;
+  --color-azul-claro: #4B79BD;
+  --color-verde-agua: #29C3B1;
+
+  --text-color: var(--color-azul-oscuro);
+  --bg-color: #f5f7fa;
+  --border-radius: 4px;
+  --transition: 0.3s ease;
+}
+
+/* 2. Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Añadido para eliminar el espacio blanco superior del body y html */
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  
+
+/* 3. Body y tipografía */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  padding: 1rem;
+}
+
+/* 4. Encabezados */
+h1, h2, h3 {
+  color: var(--color-azul-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+/* 5. Formularios */
+form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="date"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  transition: border var(--transition);
+}
+
+form input:focus {
+  border-color: var(--color-azul-claro);
+  outline: none;
+}
+
+form .error {
+  font-size: 0.875rem;
+  color: #d9534f;
+  margin-top: 0.25rem;
+}
+
+/* 6. Botones */
+button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+button[type="submit"] {
+  background-color: var(--color-verde-agua);
+  color: #fff;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #26a69a;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* 7. Tabla de listado */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-azul-oscuro);
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* 8. Botones de acción en tabla */
+.table-button {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  margin-right: 0.3rem;
+  border-radius: var(--border-radius);
+  transition: background var(--transition);
+}
+
+.table-button.edit {
+  background-color: var(--color-azul-claro);
+  color: #fff;
+}
+
+.table-button.edit:hover {
+  background-color: #3f8edb;
+}
+
+.table-button.delete {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.table-button.delete:hover {
+  background-color: #c9302c;
+}
+
+/* 9. Navegación */
+nav {
+  background: var(--color-azul-oscuro);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color var(--transition);
+}
+
+nav a:hover {
+  color: var(--color-azul-claro);
+}
