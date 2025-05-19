@@ -1,0 +1,64 @@
+<h2>Historial de Adquisición {{ adquisicionId }}</h2>
+<button routerLink="/adquisiciones">← Volver al listado</button>
+
+  <table *ngIf="history.length; else emptyState" class="history-table">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Usuario</th>
+        <th>Comentario</th>
+        <th>Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let v of history; trackBy: trackById">
+        <tr>
+          <td>{{ v.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ v.usuario }}</td>
+          <td>{{ v.comentario }}</td>
+          <td>
+            <button type="submit" (click)="v.showDetails = !v.showDetails">
+              {{ v.showDetails ? 'Ocultar' : 'Mostrar' }}
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="v.showDetails">
+          <td colspan="4">
+            <ul class="list-disc pl-5">
+              <!-- Ejemplo de campos seleccionados: presupuesto, unidad, valor_unitario, activa -->
+              <li *ngIf="v.datos.presupuesto != null">
+                presupuesto: {{ v.datos.presupuesto }}
+              </li>
+              <li *ngIf="v.datos.unidad">
+                unidad: {{ v.datos.unidad }}
+              </li>
+              <li *ngIf="v.datos.valor_unitario != null">
+                valor_unitario: {{ v.datos.valor_unitario }}
+              </li>
+              <li *ngIf="v.datos.valor_total != null">
+                valor_total: {{ v.datos.valor_total }}
+              </li>
+              <li *ngIf="v.datos.fecha_adquisicion">
+                fecha_adquisicion: {{ v.datos.fecha_adquisicion | date:'dd/MM/yyyy' }}
+              </li>
+              <li *ngIf="v.datos.proveedor">
+                proveedor: {{ v.datos.proveedor }}
+              </li>
+              <li *ngIf="v.datos.documentacion">
+                documentacion: {{ v.datos.documentacion }}
+              </li>
+              <li *ngIf="v.datos.activa != null">
+                activa: {{ v.datos.activa }}
+              </li>
+              <!-- Añade o quita <li> según los campos que quieras -->
+            </ul>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  
+  <ng-template #emptyState>
+    <p>No hay historial para esta adquisición.</p>
+  </ng-template>
+  

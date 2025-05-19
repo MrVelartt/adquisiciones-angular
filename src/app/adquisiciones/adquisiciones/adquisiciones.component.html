@@ -1,37 +1,56 @@
-<!-- src/app/adquisiciones/adquisiciones/adquisiciones.component.html -->
-
 <h2>Listado de Adquisiciones</h2>
-<button (click)="crear()">Nueva Adquisición</button>
 
-<table>
+<button type="submit" (click)="crear()">Nueva Adquisición</button>
+
+<!-- Filtro debajo del botón -->
+<div style="margin: 1rem 0">
+  <input
+    type="text"
+    [(ngModel)]="filtro"
+    placeholder="Buscar por proveedor, tipo o unidad..."
+    style="width: 24%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"
+  />
+</div>
+
+<!-- Tabla estilizada -->
+<table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
   <thead>
-    <tr>
-      <th>ID</th>
-      <th>Presupuesto</th>
-      <th>Unidad</th>
-      <th>Tipo</th>
-      <th>Cantidad</th>
-      <th>Valor Unitario</th>
-      <th>Valor Total</th>
-      <th>Fecha</th>
-      <th>Proveedor</th>
-      <th>Acciones</th>
+    <tr style="background-color: #f2f2f2;">
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">ID</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Presupuesto</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Unidad</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Tipo</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Cantidad</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Valor Unitario</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Valor Total</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Fecha</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Proveedor</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Documentación</th>
+      <th style="padding: 0.5rem; border: 1px solid #ddd;">Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let a of adquisiciones">
-      <td>{{ a.id }}</td>
-      <td>{{ a.presupuesto | currency:'COP' }}</td>
-      <td>{{ a.unidad }}</td>
-      <td>{{ a.tipo_bien_servicio }}</td>        <!-- corregido -->
-      <td>{{ a.cantidad }}</td>
-      <td>{{ a.valor_unitario | currency:'COP' }}</td> <!-- corregido -->
-      <td>{{ a.valor_total | currency:'COP' }}</td>    <!-- corregido -->
-      <td>{{ a.fecha_adquisicion }}</td>          <!-- corregido -->
-      <td>{{ a.proveedor }}</td>
-      <td>
-        <button (click)="editar(a.id)">Editar</button>
-        <button (click)="desactivar(a.id)">Desactivar</button>
+    <tr *ngFor="let a of adquisicionesFiltradas" style="border-bottom: 1px solid #eee;">
+      <td style="padding: 0.5rem;">{{ a.id }}</td>
+      <td style="padding: 0.5rem;">{{ a.presupuesto | currency:'COP' }}</td>
+      <td style="padding: 0.5rem;">{{ a.unidad }}</td>
+      <td style="padding: 0.5rem;">{{ a.tipo_bien_servicio }}</td>
+      <td style="padding: 0.5rem;">{{ a.cantidad }}</td>
+      <td style="padding: 0.5rem;">{{ a.valor_unitario | currency:'COP' }}</td>
+      <td style="padding: 0.5rem;">{{ a.valor_total | currency:'COP' }}</td>
+      <td style="padding: 0.5rem;">{{ a.fecha_adquisicion }}</td>
+      <td style="padding: 0.5rem;">{{ a.proveedor }}</td>
+      <td style="padding: 0.5rem;">{{ a.documentacion }}</td>
+      <td style="padding: 0.5rem;">
+        <div class="accion-container" style="display: flex; gap: 0.5rem;">
+          <select #accion class="accion-select" style="padding: 1rem;">
+            <option value="" disabled selected>Seleccione acción</option>
+            <option value="editar">Editar</option>
+            <option value="desactivar">Desactivar</option>
+            <option value="historial">Historial</option>
+          </select>
+          <button class="accion-button" (click)="ejecutarAccion(accion.value, a.id)">Ir</button>
+        </div>
       </td>
     </tr>
   </tbody>

@@ -1,5 +1,3 @@
-// src/app/adquisiciones/adquisicion-form/adquisicion-form.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -31,7 +29,6 @@ export class AdquisicionFormComponent implements OnInit {
       tipo_bien_servicio: ['', Validators.required],
       cantidad: [1, [Validators.required, Validators.min(1)]],
       valor_unitario: [0, [Validators.required, Validators.min(0)]],
-      // valor_total está deshabilitado en el form, pero lo incluimos con getRawValue
       valor_total: [{ value: 0, disabled: true }],
       fecha_adquisicion: ['', Validators.required],
       proveedor: ['', Validators.required],
@@ -39,7 +36,7 @@ export class AdquisicionFormComponent implements OnInit {
       activa: [true]
     });
 
-    // Suscripciones para recalcular total
+
     this.onChanges();
 
     // 2. Comprueba si hay parámetro id para modo edición
@@ -76,14 +73,14 @@ export class AdquisicionFormComponent implements OnInit {
       return;
     }
 
-    const raw = this.adquisicionForm.getRawValue(); // incluye valor_total
+    const raw = this.adquisicionForm.getRawValue();
     const payload: Partial<Adquisicion> = {
-      presupuesto: Number(raw.presupuesto),       // ahora number
+      presupuesto: Number(raw.presupuesto),       
       unidad: raw.unidad,
       tipo_bien_servicio: raw.tipo_bien_servicio,
       cantidad: Number(raw.cantidad),
-      valor_unitario: Number(raw.valor_unitario), // ahora number
-      valor_total: Number(raw.valor_total),       // ahora number
+      valor_unitario: Number(raw.valor_unitario), 
+      valor_total: Number(raw.valor_total),       
       fecha_adquisicion: raw.fecha_adquisicion,
       proveedor: raw.proveedor,
       documentacion: raw.documentacion,
@@ -99,10 +96,7 @@ export class AdquisicionFormComponent implements OnInit {
       error: err => {
         if (err.status === 400 && err.error) {
           console.error('Validación falló:', err.error);
-          // Podrías asignar errores al form:
-          // Object.keys(err.error).forEach(field =>
-          //   this.adquisicionForm.get(field)?.setErrors({ server: err.error[field] })
-          // );
+
         }
         alert('Error al guardar la adquisición: ' + err.message);
       }

@@ -1,3 +1,5 @@
+<h2 class="centrado">Formulario de Adquisiciones</h2>
+
 <form [formGroup]="adquisicionForm" (ngSubmit)="onSubmit()">
 
   <label>Presupuesto:</label>
@@ -32,8 +34,7 @@
 
   <label>Valor Total:</label>
   <input type="number" formControlName="valor_total" readonly />
-  <!-- readonly evita edición sin deshabilitar el control -->
-
+  
   <label>Fecha Adquisición:</label>
   <input type="date" formControlName="fecha_adquisicion" />
   <div *ngIf="adquisicionForm.get('fecha_adquisicion')?.invalid && adquisicionForm.get('fecha_adquisicion')?.touched">

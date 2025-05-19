@@ -1,24 +1,16 @@
-  <!-- src/app/app.component.html -->
+<main class="main">
+  <div class="content">
 
-  <main class="main">
-    <div class="content">
+    <div class="right-side">
 
-      <div class="right-side">
-        <h1>Registro de Adquisiciones</h1>
-        <p>Bienvenido</p>
+      <!-- Imagen arriba del título -->
+      <img src="icon/logo.png" alt="Logo" width="290" height="auto" />
 
-        <nav>
-          <ul>
-            <li><a routerLink="/">Inicio</a></li>
-            <li><a routerLink="/about">Acerca de</a></li>
-            <li><a routerLink="/contact">Contacto</a></li>
-          </ul>
-        </nav>
 
-        <section>
-          <!-- Aquí se renderizarán las rutas -->
-          <router-outlet></router-outlet>
-        </section>
-      </div>
+      <section>
+        <!-- Aquí se renderizarán las rutas -->
+        <router-outlet></router-outlet>
+      </section>
     </div>
-  </main>
+  </div>
+</main>
